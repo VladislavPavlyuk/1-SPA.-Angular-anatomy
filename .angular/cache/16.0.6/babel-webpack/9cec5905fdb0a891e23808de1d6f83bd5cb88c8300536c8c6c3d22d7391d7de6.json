@@ -1,0 +1,1 @@
+{"ast":null,"code":"// полифилы - инструменты, которые необходимы для поддержки приложения на Angular различными браузерами.\n// zone используется angular\nimport 'zone.js/dist/zone';","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

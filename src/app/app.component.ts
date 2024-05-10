@@ -7,14 +7,25 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'my-app',
     template: `<bio-child-comp><h2>This article is about {{name}} the {{title}}.</h2></bio-child-comp>
-
-                <quotes-child-comp [quote]="quote"></quotes-child-comp>  
+                
+                <div><h2>Famouse quotes:</h2> 
                 <input type="text" [(ngModel)]="quotetext" />
-                <button (click)="addquote()">Add quote</button>
+                <button (click)="addquote()">Add quote</button>  
 
-                <links-child-comp  [link]="link"></links-child-comp>
+                    <p *ngFor="let quote of quotes">
+                        <li>{{quote}}</li>
+                    </p>
+                </div>
+                <quotes-child-comp [quotes]="quotes"></quotes-child-comp>                 
+
+                <div><h1>Usefull links:</h1>
                 <input type="text" [(ngModel)]="linktext" />
-                <button (click)="addlink()">Add link</button>
+                <button (click)="addlink()">Add link</button>                
+                    <p *ngFor="let link of links">
+                        <a href = {{link}}>{{link}}</a>
+                    </p>
+                </div>
+                <links-child-comp  [links]="links"></links-child-comp>
                         `,
 
     styles: [`  h2, p {color:#333;}
@@ -28,20 +39,17 @@ export class AppComponent {
     name = 'William Henry Gates III';
     title = 'co-founder of Microsoft';
 
-    quote:string = `
-    "Patience is a key element of success"
-    `; 
-    quotetext:string = "";
+    quotes = []; 
+    quotetext:string = '"Patience is a key element of success"';
+
     addquote() :void {
-        this.quote += this.quotetext;
+        this.quotes.push(this.quotetext);
     }
 
-    link:string = `
-    "https://en.wikipedia.org/wiki/Bill_Gate"
+    links = [];
+    linktext:string = "https://en.wikipedia.org/wiki/Bill_Gate";
 
-    `;
-    linktext:string ="";
     addlink() :void {
-        this.link += this.linktext;
+        this.links.push(this.linktext);
     }
 }

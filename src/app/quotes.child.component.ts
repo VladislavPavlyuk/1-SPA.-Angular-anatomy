@@ -7,12 +7,16 @@ import { Component, Input} from '@angular/core';
 @Component({
     selector: 'quotes-child-comp',
     template: 	`
-				<h2>Famouse quotes:</h2>
-				<p>"{{quote}}"></p><br />
-				`
+
+    <li>"If you think your teacher is tough, wait till you get a boss"</li>
+    <li>"Life is not fair — get used to it! "</li>
+    <li>"Success is a lousy teacher. It seduces smart people into thinking they can’t lose"</li>
+		<li>"Be nice to nerds. Chances are you’ll end up working for one"</li>
+    `
+		//<p *ngFor="let quote of quotes">{{quote}}"></p>
+							
 })
 export class QuotesChildComponent { 
 
-	@Input() quote: string = "";
-
+	@Input() quotes = [];
 }

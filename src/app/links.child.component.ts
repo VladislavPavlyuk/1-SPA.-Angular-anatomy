@@ -6,13 +6,16 @@ import { Component, Input } from '@angular/core';
 // Декоратор @Component позволяет идентифицировать класс AppComponent как компонент.
 @Component({
     selector: 'links-child-comp',
-    template: 	`
-				<h1>Usefull links:</h1>
-				<a href = {{link}}>{{link}} </a>
+    template: 	`				
+				<a href = "https://en.wikipedia.org/wiki/Bill_Gates">https://en.wikipedia.org/wiki/Bill_Gates</a><br>
+				<a href = "https://www.gatesfoundation.org/">https://www.gatesfoundation.org/</a><br>
+				<a href = "https://www.gatesnotes.com/">https://www.gatesnotes.com/</a><br>
+				<a href = "https://twitter.com/billgates">https://twitter.com/billgates</a><br>
 				`
+				
 })
 export class LinksChildComponent { 
 
-	@Input() link: string = "";
+	@Input() links = [];
 
 }

@@ -12,26 +12,28 @@ import { Component } from '@angular/core';
                 <input type="text" [(ngModel)]="quotetext" />
                 <button (click)="addquote()">Add quote</button>  
 
-                    <p *ngFor="let quote of quotes">
+                    <a *ngFor="let quote of quotes">
                         <li>{{quote}}</li>
-                    </p>
+                    </a>
+
                 </div>
                 <quotes-child-comp [quotes]="quotes"></quotes-child-comp>                 
 
-                <div><h1>Usefull links:</h1>
+                <div><h2>Usefull links:</h2>
                 <input type="text" [(ngModel)]="linktext" />
-                <button (click)="addlink()">Add link</button>                
-                    <p *ngFor="let link of links">
-                        <a href = {{link}}>{{link}}</a>
-                    </p>
+                <button (click)="addlink()">Add link</button><br>
+
+                    <a *ngFor="let link of links">
+                        <a href = {{link}}>{{link}}</a><br>
+                    </a>
                 </div>
                 <links-child-comp  [links]="links"></links-child-comp>
                         `,
 
     styles: [`  h2, p {color:#333;}
                 bio-child-comp{font-size:14px; font-family:Verdana;}
-                quotes-child-comp {font-size:16px; font-family:Verdana; font-style:Italic; margin-right : 200px;}
-                links-child-comp{font-size:12px; font-family:Verdana;}
+                li, quotes-child-comp {font-size:16px; font-family:Verdana; font-style:Italic; margin-right : 200px;}
+                a, links-child-comp{font-size:12px; font-family:Verdana;}
                 `]
 })
 export class AppComponent { 
@@ -47,7 +49,7 @@ export class AppComponent {
     }
 
     links = [];
-    linktext:string = "https://en.wikipedia.org/wiki/Bill_Gate";
+    linktext:string = "https://en.wikipedia.org/wiki/Bill_Gates";
 
     addlink() :void {
         this.links.push(this.linktext);

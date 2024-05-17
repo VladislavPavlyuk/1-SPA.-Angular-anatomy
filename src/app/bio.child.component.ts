@@ -16,5 +16,6 @@ import { Component } from '@angular/core';
                 `
 })
 export class BioChildComponent { 
+
     pic1 ="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Bill_Gates_2017_%28cropped%29.jpg/220px-Bill_Gates_2017_%28cropped%29.jpg";
 }

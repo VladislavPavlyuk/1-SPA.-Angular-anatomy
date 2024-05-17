@@ -6,30 +6,26 @@ import { Component } from '@angular/core';
 // Декоратор @Component позволяет идентифицировать класс AppComponent как компонент.
 @Component({
     selector: 'my-app',
-    template: `<bio-child-comp><h2>This article is about {{name}} the {{title}}.</h2></bio-child-comp>
-                
-                <div><h2>Famouse quotes:</h2> 
-                <input type="text" [(ngModel)]="quotetext" />
-                <button (click)="addquote()">Add quote</button>  
+    template: 
+    `     
 
-                    <a *ngFor="let quote of quotes">
-                        <li>{{quote}}</li>
-                    </a>
+    <div><h2>This article is about {{name}} the {{title}}.</h2></div>
+    <a>Please choose the tag...</a><br>
 
-                </div>
-                <quotes-child-comp [quotes]="quotes"></quotes-child-comp>                 
+    <button (click)="getBio()">Bio</button>
+    <button (click)="getLinks()">Links</button>
+    <button (click)="getQuotes()">Quotes</button><hr>
 
-                <div><h2>Usefull links:</h2>
-                <input type="text" [(ngModel)]="linktext" />
-                <button (click)="addlink()">Add link</button><br>
+    <div *ngIf="conditionBio"><bio-child-comp></bio-child-comp></div>
+    <div *ngIf="!conditionBio"></div>
 
-                    <a *ngFor="let link of links">
-                        <a href = {{link}}>{{link}}</a><br>
-                    </a>
-                </div>
-                <links-child-comp  [links]="links"></links-child-comp>
-                        `,
+    <div *ngIf="conditionLinks"><links-child-comp></links-child-comp></div>
+    <div *ngIf="!conditionLinks"></div>
 
+    <div *ngIf="conditionQuotes"><quotes-child-comp></quotes-child-comp></div>
+    <div *ngIf="!conditionQuotes"></div>
+    `,
+        
     styles: [`  h2, p {color:#333;}
                 bio-child-comp{font-size:14px; font-family:Verdana;}
                 li, quotes-child-comp {font-size:16px; font-family:Verdana; font-style:Italic; margin-right : 200px;}
@@ -41,17 +37,18 @@ export class AppComponent {
     name = 'William Henry Gates III';
     title = 'co-founder of Microsoft';
 
-    quotes = []; 
-    quotetext:string = '"Patience is a key element of success"';
+    conditionBio: boolean=false;
+    conditionLinks: boolean=false;
+    conditionQuotes: boolean=false;
 
-    addquote() :void {
-        this.quotes.push(this.quotetext);
+    getBio(){
+        this.conditionBio=!this.conditionBio;
+    }
+    getLinks(){
+        this.conditionLinks=!this.conditionLinks;
+    }
+    getQuotes(){
+        this.conditionQuotes=!this.conditionQuotes;
     }
 
-    links = [];
-    linktext:string = "https://en.wikipedia.org/wiki/Bill_Gates";
-
-    addlink() :void {
-        this.links.push(this.linktext);
-    }
 }

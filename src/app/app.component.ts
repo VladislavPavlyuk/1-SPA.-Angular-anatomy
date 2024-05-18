@@ -10,20 +10,21 @@ import { Component } from '@angular/core';
     `     
 
     <div><h2>This article is about {{name}} the {{title}}.</h2></div>
-    <a>Please choose the tag...</a><br>
 
     <button (click)="getBio()">Bio</button>
     <button (click)="getLinks()">Links</button>
     <button (click)="getQuotes()">Quotes</button><hr>
 
-    <div *ngIf="conditionBio"><bio-child-comp></bio-child-comp></div>
-    <div *ngIf="!conditionBio"></div>
+    <div [ngSwitch]="condition">
+        <ng-template ngSwitchCase="Bio"><bio-child-comp></bio-child-comp></ng-template>
 
-    <div *ngIf="conditionLinks"><links-child-comp></links-child-comp></div>
-    <div *ngIf="!conditionLinks"></div>
+        <ng-template ngSwitchCase="Links"><links-child-comp> Links </links-child-comp></ng-template>
 
-    <div *ngIf="conditionQuotes"><quotes-child-comp></quotes-child-comp></div>
-    <div *ngIf="!conditionQuotes"></div>
+        <ng-template ngSwitchCase="Quotes"><quotes-child-comp> Quotes </quotes-child-comp></ng-template>
+
+        <ng-template ngSwitchDefault><a>Please choose the tag...</a><br></ng-template>
+
+    </div>
     `,
         
     styles: [`  h2, p {color:#333;}
@@ -37,18 +38,15 @@ export class AppComponent {
     name = 'William Henry Gates III';
     title = 'co-founder of Microsoft';
 
-    conditionBio: boolean=false;
-    conditionLinks: boolean=false;
-    conditionQuotes: boolean=false;
+    condition: string="";
 
     getBio(){
-        this.conditionBio=!this.conditionBio;
+        this.condition = "Bio";
     }
     getLinks(){
-        this.conditionLinks=!this.conditionLinks;
+        this.condition = "Links";
     }
     getQuotes(){
-        this.conditionQuotes=!this.conditionQuotes;
+        this.condition = "Quotes";
     }
-
 }
